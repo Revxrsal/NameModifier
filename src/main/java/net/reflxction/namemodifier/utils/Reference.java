@@ -15,8 +15,6 @@
  */
 package net.reflxction.namemodifier.utils;
 
-import net.reflxction.namemodifier.commons.ChatColor;
-
 /**
  * Class which contains mod information.
  */
