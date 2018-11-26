@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.example;
+package net.reflxction.namemodifier;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
@@ -23,15 +23,15 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.reflxction.example.proxy.IProxy;
-import net.reflxction.example.updater.UpdateManager;
-import net.reflxction.example.updater.VersionChecker;
-import net.reflxction.example.utils.Reference;
+import net.reflxction.namemodifier.proxy.IProxy;
+import net.reflxction.namemodifier.updater.UpdateManager;
+import net.reflxction.namemodifier.updater.VersionChecker;
+import net.reflxction.namemodifier.utils.Reference;
 
 import java.io.File;
 
 /**
- * ExampleMod: The mod template used by all of my mods
+ * NameModifier: A flexible mod for applying fake names
  */
 @Mod(
         modid = Reference.MOD_ID,
@@ -39,12 +39,12 @@ import java.io.File;
         version = Reference.VERSION,
         acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS
 )
-public class ExampleMod {
+public class NameModifier {
 
-    public static final ExampleMod INSTANCE = new ExampleMod();
+    public static final NameModifier INSTANCE = new NameModifier();
 
     // Config for saving data
-    private Configuration config = new Configuration(new File("config" + File.separator + "example-config.cfg"));
+    private Configuration config = new Configuration(new File("config" + File.separator + "name-modifier.cfg"));
 
     // Assign proxies of the mod
     @SidedProxy(

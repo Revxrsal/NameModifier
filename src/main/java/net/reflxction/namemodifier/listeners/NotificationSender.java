@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.example.updater;
+package net.reflxction.namemodifier.listeners;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent;
-import net.reflxction.example.ExampleMod;
-import net.reflxction.example.commons.Settings;
-import net.reflxction.example.utils.Reference;
-import net.reflxction.example.utils.SimpleSender;
+import net.reflxction.namemodifier.NameModifier;
+import net.reflxction.namemodifier.commons.Settings;
+import net.reflxction.namemodifier.utils.Reference;
+import net.reflxction.namemodifier.utils.SimpleSender;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -39,8 +39,8 @@ public class NotificationSender {
             new Timer().schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    if (ExampleMod.INSTANCE.getChecker().isUpdateAvailable()) {
-                        SimpleSender.send("&eAn update is available for &b" + Reference.NAME + "&e! To update, do &a/examplemod update&e.");
+                    if (NameModifier.INSTANCE.getChecker().isUpdateAvailable()) {
+                        SimpleSender.send("&eAn update is available for &b" + Reference.NAME + "&e! To update, do &a/nm update&e.");
                         sent = true;
                     }
                 }

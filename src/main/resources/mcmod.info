@@ -1,11 +1,11 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "A mod which does something cool.",
+  "modid": "namemodifier",
+  "name": "Name Modifier",
+  "description": "A mod which gives the client player a fake name.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "http://www.github.com/ReflxctionDev/ExampleMod",
+  "url": "http://www.github.com/ReflxctionDev/NameModifier",
   "updateUrl": "",
   "authorList": ["Reflxction"],
   "credits": "Reflxction",

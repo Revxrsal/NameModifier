@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.example.updater;
+package net.reflxction.namemodifier.updater;
 
 import net.minecraft.client.Minecraft;
-import net.reflxction.example.ExampleMod;
-import net.reflxction.example.utils.Reference;
+import net.reflxction.namemodifier.NameModifier;
+import net.reflxction.namemodifier.utils.Reference;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -64,7 +64,7 @@ public class UpdateManager {
     }
 
     private String getDownloadLink() {
-        String version = String.valueOf(ExampleMod.INSTANCE.getChecker().getLatestVersion()) + (snapshot ? "-SNAPSHOT" : "");
+        String version = String.valueOf(NameModifier.INSTANCE.getChecker().getLatestVersion()) + (snapshot ? "-SNAPSHOT" : "");
         return "https://github.com/ReflxctionDev/" +
                 Reference.REPOSITORY_NAME +
                 "/" +

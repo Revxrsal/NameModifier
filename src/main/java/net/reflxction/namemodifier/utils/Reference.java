@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.example.utils;
+package net.reflxction.namemodifier.utils;
 
-import net.reflxction.example.commons.ChatColor;
+import net.reflxction.namemodifier.commons.ChatColor;
 
 /**
  * Class which contains mod information.
@@ -23,10 +23,10 @@ import net.reflxction.example.commons.ChatColor;
 public class Reference {
 
     // Mod ID (for Forge initialization)
-    public static final String MOD_ID = "example";
+    public static final String MOD_ID = "namemodifier";
 
     // Mod name
-    public static final String NAME = "Example Mod";
+    public static final String NAME = "Name Modifier";
 
     // Mod version
     public static final String VERSION = "1.0";
@@ -34,17 +34,14 @@ public class Reference {
     // Minecraft versions that the mod works on
     public static final String ACCEPTED_VERSIONS = "[1.8.9]";
 
-    // Mod prefix (for sending messages)
-    public static final String PREFIX = ChatColor.format("&2[&aExample Mod&2] ");
-
     // Client proxy handler
-    public static final String CLIENT_PROXY = "net.reflxction.example.proxy.ClientProxy";
+    public static final String CLIENT_PROXY = "net.reflxction.namemodifier.proxy.ClientProxy";
 
     // Server proxy handler
-    public static final String SERVER_PROXY = "net.reflxction.example.proxy.ServerProxy";
+    public static final String SERVER_PROXY = "net.reflxction.namemodifier.proxy.ServerProxy";
 
     // The Git Repository name
-    public static final String REPOSITORY_NAME = "ExampleMod";
+    public static final String REPOSITORY_NAME = "NameModifier";
 
     // The JAR name of the mod
     public static final String JAR_NAME = REPOSITORY_NAME + "-" + VERSION + "-SNAPSHOT";

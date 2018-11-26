@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.example.updater;
+package net.reflxction.namemodifier.updater;
 
-import net.reflxction.example.utils.Reference;
+import net.reflxction.namemodifier.utils.Reference;
 import net.reflxction.simplejson.json.JsonURLReader;
 
 import java.io.IOException;

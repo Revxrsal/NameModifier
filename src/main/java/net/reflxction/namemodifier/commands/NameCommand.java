@@ -13,31 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.example.commands;
+package net.reflxction.namemodifier.commands;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.BlockPos;
-import net.reflxction.example.ExampleMod;
-import net.reflxction.example.commons.Multithreading;
-import net.reflxction.example.commons.Settings;
-import net.reflxction.example.utils.SimpleSender;
+import net.reflxction.namemodifier.NameModifier;
+import net.reflxction.namemodifier.commons.Multithreading;
+import net.reflxction.namemodifier.commons.Settings;
+import net.reflxction.namemodifier.utils.SimpleSender;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * Class which handles command input for "/example"
+ * Class which handles command input for "/namemodifier"
  */
-public class ExampleCommand implements ICommand {
+public class NameCommand implements ICommand {
 
     /**
      * Gets the name of the command
      */
     @Override
     public String getCommandName() {
-        return "example";
+        return "namemodifier";
     }
 
     /**
@@ -47,12 +47,12 @@ public class ExampleCommand implements ICommand {
      */
     @Override
     public String getCommandUsage(ICommandSender sender) {
-        return "/example <toggle / check / update>";
+        return "/namemodifier <toggle / check / update / name>";
     }
 
     @Override
     public List<String> getCommandAliases() {
-        return Collections.singletonList("ex");
+        return Collections.singletonList("nm");
     }
 
     /**
@@ -71,15 +71,15 @@ public class ExampleCommand implements ICommand {
                 switch (args[0]) {
                     case "toggle":
                         Settings.ENABLED.set(!Settings.ENABLED.get());
-                        SimpleSender.send(Settings.ENABLED.get() ? "&aExampleMod has been enabled" : "&cExampleMod has been disabled");
+                        SimpleSender.send(Settings.ENABLED.get() ? "&aNameModifier has been enabled" : "&cNameModifier has been disabled");
                         break;
                     case "update":
-                        if (ExampleMod.INSTANCE.getChecker().isUpdateAvailable()) {
+                        if (NameModifier.INSTANCE.getChecker().isUpdateAvailable()) {
                             Multithreading.runAsync(() -> {
-                                if (ExampleMod.INSTANCE.getUpdateManager().updateMod()) {
+                                if (NameModifier.INSTANCE.getUpdateManager().updateMod()) {
                                     SimpleSender.send("&aSuccessfully updated the mod! Restart your game to see changes.");
                                 } else {
-                                    SimpleSender.send("&cFailed to update mod! To avoid any issues, delete the mod jar and install it manually again.");
+                                    SimpleSender.send("&cFailed to update mod! To avoid any issues, delete the mod JAR and install it manually again.");
                                 }
                             });
                         } else {
@@ -92,6 +92,15 @@ public class ExampleCommand implements ICommand {
                         break;
                     default:
                         SimpleSender.send("&cIncorrect command usage. Try " + getCommandUsage(sender));
+                        break;
+                }
+                break;
+            case 2:
+                switch (args[0]) {
+                    case "name":
+                    case "setname":
+                        Settings.NAME.set(args[1]);
+                        SimpleSender.send("&aFake name has been set to &e" + args[1]);
                         break;
                 }
                 break;
@@ -110,7 +119,7 @@ public class ExampleCommand implements ICommand {
 
     @Override
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
-        return Arrays.asList("toggle", "check", "update");
+        return Arrays.asList("name", "toggle", "check", "update");
     }
 
     /**

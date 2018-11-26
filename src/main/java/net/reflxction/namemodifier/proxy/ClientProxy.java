@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.example.proxy;
+package net.reflxction.namemodifier.proxy;
 
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.*;
-import net.reflxction.example.ExampleMod;
-import net.reflxction.example.commands.ExampleCommand;
-import net.reflxction.example.commons.Multithreading;
-import net.reflxction.example.commons.Settings;
-import net.reflxction.example.updater.NotificationSender;
+import net.reflxction.namemodifier.NameModifier;
+import net.reflxction.namemodifier.commands.NameCommand;
+import net.reflxction.namemodifier.commons.Multithreading;
+import net.reflxction.namemodifier.commons.Settings;
+import net.reflxction.namemodifier.listeners.ModifyingListener;
+import net.reflxction.namemodifier.listeners.NotificationSender;
 
 public class ClientProxy implements IProxy {
 
@@ -36,9 +37,9 @@ public class ClientProxy implements IProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         if (Settings.SEND_UPDATES.get()) {
-            Multithreading.runAsync(() -> ExampleMod.INSTANCE.getChecker().updateState());
+            Multithreading.runAsync(() -> NameModifier.INSTANCE.getChecker().updateState());
         }
-        ClientCommandHandler.instance.registerCommand(new ExampleCommand());
+        ClientCommandHandler.instance.registerCommand(new NameCommand());
     }
 
     /**
@@ -51,6 +52,7 @@ public class ClientProxy implements IProxy {
     @Override
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new NotificationSender());
+        MinecraftForge.EVENT_BUS.register(new ModifyingListener());
     }
 
     /**
@@ -73,7 +75,7 @@ public class ClientProxy implements IProxy {
      */
     @Override
     public void serverStarting(FMLServerStartingEvent event) {
-        event.registerServerCommand(new ExampleCommand());
+        event.registerServerCommand(new NameCommand());
     }
 
 }

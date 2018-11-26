@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.example.commons;
+package net.reflxction.namemodifier.commons;
 
-import net.reflxction.example.ExampleMod;
+import net.minecraft.client.Minecraft;
+import net.reflxction.namemodifier.NameModifier;
 
 /**
- * A class with all commons as constants
+ * A class with all settings as constants
  */
 public class Settings {
 
@@ -27,6 +28,9 @@ public class Settings {
 
     // Whether the mod should send updates or check for them
     public static final Setting<Boolean> SEND_UPDATES = new Setting<>("SendUpdates", true);
+
+    // The fake name of the player
+    public static final Setting<String> NAME = new Setting<>("Name", Minecraft.getMinecraft().getSession().getUsername());
 
     /**
      * Represents a setting
@@ -59,13 +63,13 @@ public class Settings {
             this.configName = configName;
             this.defaultValue = defaultValue;
             if (defaultValue instanceof Boolean)
-                value = ExampleMod.INSTANCE.getConfig().get(category, configName, (boolean) defaultValue).getBoolean();
+                value = NameModifier.INSTANCE.getConfig().get(category, configName, (boolean) defaultValue).getBoolean();
             else if (defaultValue instanceof Integer)
-                value = ExampleMod.INSTANCE.getConfig().get(category, configName, (int) defaultValue).getInt();
+                value = NameModifier.INSTANCE.getConfig().get(category, configName, (int) defaultValue).getInt();
             else if (defaultValue instanceof Double)
-                value = ExampleMod.INSTANCE.getConfig().get(category, configName, (double) defaultValue).getDouble();
+                value = NameModifier.INSTANCE.getConfig().get(category, configName, (double) defaultValue).getDouble();
             else if (defaultValue instanceof String)
-                value = ExampleMod.INSTANCE.getConfig().get(category, configName, (String) defaultValue).getString();
+                value = NameModifier.INSTANCE.getConfig().get(category, configName, (String) defaultValue).getString();
         }
 
         /**
@@ -96,16 +100,16 @@ public class Settings {
         public void set(T value) {
             this.value = value;
             if (value instanceof Boolean)
-                ExampleMod.INSTANCE.getConfig().get(category, configName, (Boolean) defaultValue).set((Boolean) value);
+                NameModifier.INSTANCE.getConfig().get(category, configName, (Boolean) defaultValue).set((Boolean) value);
             else if (value instanceof Integer)
-                ExampleMod.INSTANCE.getConfig().get(category, configName, (Integer) defaultValue).set((Integer) value);
+                NameModifier.INSTANCE.getConfig().get(category, configName, (Integer) defaultValue).set((Integer) value);
             else if (value instanceof Double)
-                ExampleMod.INSTANCE.getConfig().get(category, configName, (Double) defaultValue).set((Double) value);
+                NameModifier.INSTANCE.getConfig().get(category, configName, (Double) defaultValue).set((Double) value);
             else if (value instanceof String)
-                ExampleMod.INSTANCE.getConfig().get(category, configName, (String) defaultValue).set((String) value);
+                NameModifier.INSTANCE.getConfig().get(category, configName, (String) defaultValue).set((String) value);
             else
-                ExampleMod.INSTANCE.getConfig().get(category, configName, defaultValue.toString()).set(value.toString());
-            ExampleMod.INSTANCE.getConfig().save();
+                NameModifier.INSTANCE.getConfig().get(category, configName, defaultValue.toString()).set(value.toString());
+            NameModifier.INSTANCE.getConfig().save();
         }
     }
 }
