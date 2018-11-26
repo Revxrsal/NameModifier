@@ -1,8 +1,11 @@
-# Example mod Template
-This repository consists of the current code template that all of my upcoming mods will be built on. This is up to change.
+# Name Modifier
+**NameModifier** is a simple MinecraftForge-1.8.9 modification which allows the player to apply fake names, which only affects the client chat.
 
-All of the classes are claimed under the **[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)**. You're always free to change it to your own license (e.g GNU General Public License, MIT License, etc.) 
+This can be useful for people who have plans to change their Minecraft usernames, but are unsure how it would look, and would help them make the best decision based on real-like thoughts.
 
-Feel free to use it in your mod if you'd like to, however please leave some credits as it would be highly appreciated.
-
-
+# Commands:
+**Command**: /namemodifier, **aliases**: /nm
+* /nm name \[alias: setname] - Sets the fake name
+* /nm toggle - Toggles the mod (if enabled, gets disabled. If disabled, gets enabled.)
+* /nm check - Toggles whether the mod should check for updates on game startup.
+* /nm update - Updates the mod from the latest JAR release from the GitHub repository.
