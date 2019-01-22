@@ -15,17 +15,21 @@
  */
 package net.reflxction.namemodifier.commands;
 
+import com.google.common.collect.ImmutableList;
+import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.BlockPos;
 import net.reflxction.namemodifier.NameModifier;
 import net.reflxction.namemodifier.commons.Multithreading;
+import net.reflxction.namemodifier.commons.NameGUI;
 import net.reflxction.namemodifier.commons.Settings;
 import net.reflxction.namemodifier.utils.SimpleSender;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Class which handles command input for "/namemodifier"
@@ -52,7 +56,7 @@ public class NameCommand implements ICommand {
 
     @Override
     public List<String> getCommandAliases() {
-        return Collections.singletonList("nm");
+        return ImmutableList.of("nm");
     }
 
     /**
@@ -89,6 +93,14 @@ public class NameCommand implements ICommand {
                     case "check":
                         Settings.SEND_UPDATES.set(!Settings.SEND_UPDATES.get());
                         SimpleSender.send(Settings.SEND_UPDATES.get() ? "&aYou will be notified on updates" : "&cYou will no longer be notified on updates");
+                        break;
+                    case "gui":
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                Minecraft.getMinecraft().displayGuiScreen(new NameGUI());
+                            }
+                        }, 50);
                         break;
                     default:
                         SimpleSender.send("&cIncorrect command usage. Try " + getCommandUsage(sender));

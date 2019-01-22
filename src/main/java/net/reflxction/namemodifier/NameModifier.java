@@ -15,7 +15,7 @@
  */
 package net.reflxction.namemodifier;
 
-import net.minecraftforge.common.config.Configuration;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -23,10 +23,14 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.reflxction.namemodifier.commons.NameManager;
+import net.reflxction.namemodifier.commons.Settings;
 import net.reflxction.namemodifier.proxy.IProxy;
 import net.reflxction.namemodifier.updater.UpdateManager;
 import net.reflxction.namemodifier.updater.VersionChecker;
 import net.reflxction.namemodifier.utils.Reference;
+import net.reflxction.simplejson.configuration.select.SelectableConfiguration;
+import net.reflxction.simplejson.json.JsonFile;
 
 import java.io.File;
 
@@ -44,7 +48,14 @@ public class NameModifier {
     public static final NameModifier INSTANCE = new NameModifier();
 
     // Config for saving data
-    private Configuration config = new Configuration(new File("config" + File.separator + "name-modifier.cfg"));
+    private static final SelectableConfiguration CONFIGURATION = SelectableConfiguration.of(
+            JsonFile.of(Minecraft.getMinecraft().mcDataDir + File.separator + "config" + File.separator + "name-modifier.cfg"));
+
+    static {
+        CONFIGURATION.register(Settings.class, NameManager.class);
+        CONFIGURATION.associate();
+        Runtime.getRuntime().addShutdownHook(new Thread(CONFIGURATION::save));
+    }
 
     // Assign proxies of the mod
     @SidedProxy(
@@ -102,15 +113,6 @@ public class NameModifier {
     @EventHandler
     public void onFMLServerStarting(FMLServerStartingEvent event) {
         proxy.serverStarting(event);
-    }
-
-    /**
-     * The mod config
-     *
-     * @return The config file used to store all the mod data and HTTP caches if any
-     */
-    public Configuration getConfig() {
-        return config;
     }
 
     /**

@@ -22,6 +22,7 @@ import net.reflxction.namemodifier.NameModifier;
 import net.reflxction.namemodifier.commands.NameCommand;
 import net.reflxction.namemodifier.commons.Multithreading;
 import net.reflxction.namemodifier.commons.Settings;
+import net.reflxction.namemodifier.listeners.ColoredNameListener;
 import net.reflxction.namemodifier.listeners.ModifyingListener;
 import net.reflxction.namemodifier.listeners.NotificationSender;
 
@@ -53,6 +54,7 @@ public class ClientProxy implements IProxy {
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new NotificationSender());
         MinecraftForge.EVENT_BUS.register(new ModifyingListener());
+        MinecraftForge.EVENT_BUS.register(new ColoredNameListener());
     }
 
     /**
