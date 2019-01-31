@@ -64,7 +64,7 @@ public class UpdateManager {
     }
 
     private String getDownloadLink() {
-        String version = String.valueOf(NameModifier.INSTANCE.getChecker().getLatestVersion()) + (snapshot ? "-SNAPSHOT" : "");
+        String version = NameModifier.INSTANCE.getChecker().getLatestVersion() + (snapshot ? "-SNAPSHOT" : "");
         return "https://github.com/ReflxctionDev/" +
                 Reference.REPOSITORY_NAME +
                 "/" +
