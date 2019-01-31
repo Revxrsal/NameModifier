@@ -18,7 +18,7 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.1-SNAPSHOT" // For snapshots as first release, TODO remove -SNAPSHOT suffix if stable.
+version = "1.2-SNAPSHOT" // For snapshots as first release, TODO remove -SNAPSHOT suffix if stable.
 group = "net.reflxction" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "NameModifier"
 
@@ -58,12 +58,16 @@ reobf {
 }
 
 configurations {
-    embed
-    compile.extendsFrom(embed)
+    shade
+    compile.extendsFrom(shade)
 }
 
 dependencies {
-    compile 'com.github.ReflxctionDev:SimpleJSON:1.9.1-SNAPSHOT'
+    shade ('com.github.ReflxctionDev:SimpleJSON:1.9.5-SNAPSHOT') {
+        exclude module: 'gson'
+        exclude module: 'commons-io'
+        exclude module: 'guava'
+    }
 }
 
 jar {

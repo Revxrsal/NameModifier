@@ -47,7 +47,7 @@ public class VersionChecker {
     double getLatestVersion() {
         try {
             JsonURLReader reader = new JsonURLReader(checkerURL);
-            return reader.getContent().get("version").getAsDouble();
+            return reader.getContentAsObject().get("version").getAsDouble();
         } catch (IOException e) {
             e.printStackTrace();
         }
