@@ -63,11 +63,6 @@ configurations {
 }
 
 dependencies {
-    shade ('com.github.ReflxctionDev:SimpleJSON:1.9.5-SNAPSHOT') {
-        exclude module: 'gson'
-        exclude module: 'commons-io'
-        exclude module: 'guava'
-    }
 }
 
 jar {

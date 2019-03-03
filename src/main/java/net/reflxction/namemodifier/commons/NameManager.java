@@ -27,7 +27,7 @@ import java.util.Map;
 public class NameManager {
 
     @SelectKey("NamesMap")
-    private static final SelectionHolder<Map<String, String>> MAP =
+    public static final SelectionHolder<Map<String, String>> MAP =
             new SelectionHolder<>(new LinkedHashMap<>());
 
     public static final NameManager MANAGER = new NameManager();
